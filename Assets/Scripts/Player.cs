@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     float fireRate = 0.15f;
     float _canFire = 0.0f;
-    [SerializeField]
-    float _lives = 3f;
+
+    public int health = 3;
 
     int _score;
 
@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         transform.position = Vector3.zero;
 
         _score = 0;
+        health = 3;
     }
 
     // Update is called once per frame
@@ -125,9 +126,11 @@ public class Player : MonoBehaviour
             return;
         }
 
-        _lives--;
+        health--;
 
-        if ( _lives < 1 )
+        _uiManager.UpdateHealth(health);
+
+        if ( health < 1 )
         {
             spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);            
