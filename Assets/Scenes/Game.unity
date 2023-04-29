@@ -324,6 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 721152265}
   healthText: {fileID: 1881958899}
+  gameOverText: {fileID: 1281419873}
   _player: {fileID: 0}
 --- !u!1 &713813508
 GameObject:
