@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -181,6 +183,14 @@ public class Player : MonoBehaviour
         _uiManager.UpdateScore(_score);
 
         Debug.Log($"Score { _score}");
+    }
+
+    void ResetLevel()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+                        
+        }
     }
 }
 
