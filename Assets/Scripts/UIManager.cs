@@ -8,17 +8,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private Text scoreText, healthText, gameOverText;
-    [SerializeField]
-    private Player _player;
+    private Text scoreText, healthText, gameOverText, startOverText;
     Animator textAnim;
     // handle to text
 
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.Find("Player").GetComponent<Player>();
-
         textAnim = GameObject.Find("GameOver_Text").GetComponent<Animator>();
 
         scoreText.text = "Score: " + 0;
@@ -26,6 +22,7 @@ public class UIManager : MonoBehaviour
         healthText.text = "Health: " + 3;
 
         gameOverText.enabled = false;
+        startOverText.enabled = false;
         textAnim.enabled = false;
     }
 
@@ -47,6 +44,7 @@ public class UIManager : MonoBehaviour
         if (playerHealth < 1)
         {
             gameOverText.enabled = true;
+            startOverText.enabled = true;
             textAnim.enabled = true;
 
             //StartCoroutine(GameOverFlicker());

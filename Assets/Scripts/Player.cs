@@ -135,7 +135,9 @@ public class Player : MonoBehaviour
         if ( health < 1 )
         {
             spawnManager.OnPlayerDeath();
-            Destroy(this.gameObject);            
+            Destroy(this.gameObject);
+
+            ResetLevel();
         }
     }
 
@@ -189,7 +191,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-                        
+            SceneManager.LoadScene("Game");           
         }
     }
 }
