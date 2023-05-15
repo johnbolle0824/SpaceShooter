@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
     }
 
     // alt method to flicker game over text
+    // currently the flicker is an Animation that loops betweens on and off
     /*
     IEnumerator GameOverFlicker()
     {

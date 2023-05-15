@@ -59,7 +59,5 @@ public class Enemy : MonoBehaviour
 
             Destroy(this.gameObject);            
         }
-
-        Debug.Log(_health);
     }
 }

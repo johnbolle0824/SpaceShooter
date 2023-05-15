@@ -12,6 +12,12 @@ public class SpawnManager : MonoBehaviour
     GameObject spawnPos;
     [SerializeField]
     GameObject enemyContainer;
+    [SerializeField]
+    Player player;
+
+    private IEnumerator spawnCoroutine;
+
+    private float _spawnTime;
 
     bool stopSpawning = false;
 
@@ -19,14 +25,28 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnEnemies(1.5f));
+        player = GameObject.Find("Player").GetComponent<Player>();
+
+        _spawnTime = 1.5f;
+        spawnCoroutine = SpawnEnemies(_spawnTime);
+
+        StartCoroutine(spawnCoroutine);
         StartCoroutine(SpawnPowerUps(Random.Range(5f, 10f)));
     }
 
     // Update is called once per frame
     void Update()
-    {
-    
+    {        
+        if (player.score >= 50)  
+            _spawnTime = 1.0f;
+        if (player.score >= 100)
+            _spawnTime = 0.5f;
+        if (player.score >= 150)
+            _spawnTime = 0.1f;
+        if (player.score >= 200) 
+            _spawnTime = 0.01f;
+
+        Debug.Log(_spawnTime);
     }
 
     IEnumerator SpawnEnemies(float spawnTime)

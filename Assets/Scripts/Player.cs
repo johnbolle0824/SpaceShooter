@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     public int health = 3;
 
-    int _score;
+    public int score;
 
     private UIManager _uiManager;
         
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         
         transform.position = Vector3.zero;
 
-        _score = 0;
+        score = 0;
         health = 3;
     }
 
@@ -177,14 +177,10 @@ public class Player : MonoBehaviour
         shieldPowerUp.SetActive(true);
     }
 
-    // method to add 10 to score
-    // tell UI to update score
     public void ScoreModifier(int points)
     {
-        _score += points;
-        _uiManager.UpdateScore(_score);
-
-        Debug.Log($"Score { _score}");
+        score += points;
+        _uiManager.UpdateScore(score);
     }
 
     void ResetLevel()
