@@ -9,21 +9,26 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     private Text scoreText, healthText, gameOverText, startOverText;
-    Animator textAnim;
+    Animator gameOverTextAnim;
+
+    private GameManager _gameManager;
     // handle to text
 
     // Start is called before the first frame update
     void Start()
-    {
-        textAnim = GameObject.Find("GameOver_Text").GetComponent<Animator>();
-
+    {     
+        gameOverTextAnim = GameObject.Find("GameOver_Text").GetComponent<Animator>();
         scoreText.text = "Score: " + 0;
-
         healthText.text = "Health: " + 3;
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (_gameManager == null)
+        {
+            Debug.LogError("GameManager is NULL");
+        }
 
         gameOverText.enabled = false;
         startOverText.enabled = false;
-        textAnim.enabled = false;
+        gameOverTextAnim.enabled = false;
     }
 
     // Update is called once per frame
@@ -43,9 +48,10 @@ public class UIManager : MonoBehaviour
 
         if (playerHealth < 1)
         {
+            _gameManager.GameOver();
             gameOverText.enabled = true;
             startOverText.enabled = true;
-            textAnim.enabled = true;
+            gameOverTextAnim.enabled = true;
 
             //StartCoroutine(GameOverFlicker());
         }

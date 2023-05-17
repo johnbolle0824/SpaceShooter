@@ -136,8 +136,6 @@ public class Player : MonoBehaviour
         {
             spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
-
-            ResetLevel();
         }
     }
 
@@ -181,14 +179,6 @@ public class Player : MonoBehaviour
     {
         score += points;
         _uiManager.UpdateScore(score);
-    }
-
-    void ResetLevel()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene("Game");           
-        }
     }
 }
 
