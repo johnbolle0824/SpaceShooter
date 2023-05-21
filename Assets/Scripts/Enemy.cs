@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,18 @@ public class Enemy : MonoBehaviour
     float _health;
 
     private Player _player;
+    private Animator _anim;
 
     // Start is called before the first frame update
     void Start()
     {
+        _anim = GetComponent<Animator>();
         _player = GameObject.Find("Player").GetComponent<Player>();
+
+        if (_player == null)
+        {
+            Debug.LogError("Player is NULL");
+        }
     }
 
     // Update is called once per frame
@@ -26,7 +34,7 @@ public class Enemy : MonoBehaviour
 
         if (transform.position.x <= -11.5f)
         {
-            transform.position = new Vector3(_startPos, Random.Range(-5f, 5f), transform.position.z);
+            transform.position = new Vector3(_startPos, UnityEngine.Random.Range(-5f, 5f), transform.position.z);
         }
     }
 
@@ -42,12 +50,12 @@ public class Enemy : MonoBehaviour
 
             if (_player != null)
             {
-                // add 10 pts to player score value
                 _player.ScoreModifier(10);
             }
 
-            Destroy(gameObject);
-            
+            _anim.SetTrigger("OnEnemyDeath");
+            _speed = 0;
+            Destroy(this.gameObject, 0.4f);            
         }
 
         if (other.gameObject.CompareTag("Player"))
@@ -57,7 +65,9 @@ public class Enemy : MonoBehaviour
                 player.Damage();
             }
 
-            Destroy(this.gameObject);            
-        }
+            _anim.SetTrigger("OnEnemyDeath");
+            _speed = 0;
+            Destroy(this.gameObject, 0.4f);            
+        }        
     }
 }

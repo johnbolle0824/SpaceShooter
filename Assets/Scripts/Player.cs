@@ -135,7 +135,10 @@ public class Player : MonoBehaviour
         if ( health < 1 )
         {
             spawnManager.OnPlayerDeath();
-            Destroy(this.gameObject);
+
+            anim.SetBool("isPlayerAlive", false);
+            _speed = 0;
+            Destroy(this.gameObject, 0.7f);
         }
     }
 

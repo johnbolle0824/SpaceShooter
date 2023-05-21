@@ -155,7 +155,8 @@ MonoBehaviour:
   topBounds: 5
   bottomBounds: -5
   fireRate: 0.15
-  _lives: 3
+  health: 3
+  score: 0
   isShieldActive: 0
   laserPrefab: {fileID: 3922749996965882178, guid: 662d89dda36d23c4e936341bed0b6a1b, type: 3}
   tripleShot: {fileID: 5963040861506050758, guid: 02e92c75b3244874997eb029cf717a7c, type: 3}
