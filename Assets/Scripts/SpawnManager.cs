@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject enemyPrefab; 
+    GameObject enemyPrefab, bigAsteroidPrefab, smallAsteroidPrefab; 
     [SerializeField] 
     GameObject[] powerUps;
     [SerializeField]
@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator spawnCoroutine;
 
-    private float _spawnTime;
+    public float _spawnTime;
 
     bool stopSpawning = false;
 
@@ -27,27 +27,21 @@ public class SpawnManager : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<Player>();
 
-        _spawnTime = 1.5f;
-        spawnCoroutine = SpawnEnemies(_spawnTime);
+        _spawnTime = 3f;
 
-        StartCoroutine(spawnCoroutine);
+        StartCoroutine(SpawnEnemies(_spawnTime));
         StartCoroutine(SpawnPowerUps(Random.Range(5f, 10f)));
+        StartCoroutine(SpawnSmallAsteroid(8f));
+        StartCoroutine(SpawnBigAsteroid(10f));
     }
 
     // Update is called once per frame
     void Update()
-    {        
-        if (player.score >= 50)  
-            _spawnTime = 1.0f;
-        if (player.score >= 100)
-            _spawnTime = 0.5f;
-        if (player.score >= 150)
-            _spawnTime = 0.1f;
-        if (player.score >= 200) 
-            _spawnTime = 0.01f;
+    {
 
-        Debug.Log(_spawnTime);
     }
+
+
 
     IEnumerator SpawnEnemies(float spawnTime)
     {
@@ -66,6 +60,28 @@ public class SpawnManager : MonoBehaviour
             Vector3 spawnPos = new Vector3(11.5f, Random.Range(-5, 5), 0);
             int randomPowerUp= Random.Range(0, 3);
             Instantiate(powerUps[randomPowerUp],spawnPos, Quaternion.identity);
+            yield return new WaitForSeconds(spawnTime);
+        }
+    }
+
+    public IEnumerator SpawnBigAsteroid(float spawnTime)
+    {
+        while (stopSpawning == false)
+        {
+            GameObject newBigAsteroid = Instantiate(bigAsteroidPrefab, new Vector3(11.5f,
+                Random.Range(-5, 5),0), Quaternion.identity);
+            newBigAsteroid.transform.parent = enemyContainer.transform;
+            yield return new WaitForSeconds(spawnTime);
+        }
+    }
+
+    public IEnumerator SpawnSmallAsteroid(float spawnTime)
+    {
+        while (stopSpawning == false)
+        {
+            GameObject newSmallAsteroid = Instantiate(smallAsteroidPrefab,new Vector3(11.5f, 
+                Random.Range(-5,5),0), Quaternion.identity);
+            newSmallAsteroid.transform.parent = enemyContainer.transform;
             yield return new WaitForSeconds(spawnTime);
         }
     }

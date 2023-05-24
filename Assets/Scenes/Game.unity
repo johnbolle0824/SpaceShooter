@@ -184,6 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1934387956660035867, guid: e21fa606de0e41942af4fc48c6e459ba, type: 3}
+  bigAsteroidPrefab: {fileID: 3606716524853458207, guid: b77706736157e4a4b8b6e0347f6ccdd6, type: 3}
+  smallAsteroidPrefab: {fileID: 767871520803879572, guid: c91feb5b551a94d4aa7e085cf29a6c6e, type: 3}
   powerUps:
   - {fileID: 3741338324417198761, guid: 1b7753ddc8b86b347b6d5691e0f666eb, type: 3}
   - {fileID: 6479338416451094256, guid: 09b1824fb690b3f4a90dd52604cddd1d, type: 3}
@@ -191,6 +193,7 @@ MonoBehaviour:
   spawnPos: {fileID: 1934387956660035867, guid: e21fa606de0e41942af4fc48c6e459ba, type: 3}
   enemyContainer: {fileID: 14272045}
   player: {fileID: 2872136362338794024, guid: 593dbba1bc92dc046b84c2aaa99f35be, type: 3}
+  _spawnTime: 0
 --- !u!4 &162293847
 Transform:
   m_ObjectHideFlags: 0

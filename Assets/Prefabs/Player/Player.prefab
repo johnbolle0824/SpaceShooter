@@ -162,6 +162,7 @@ MonoBehaviour:
   tripleShot: {fileID: 5963040861506050758, guid: 02e92c75b3244874997eb029cf717a7c, type: 3}
   shieldPowerUp: {fileID: 8487309215649590250}
   laserSpawnPos: {fileID: 6822674665003206633}
+  playerExplosion: {fileID: 7400000, guid: a170723f8cc5c45f3987c4f85ef3766f, type: 2}
 --- !u!95 &1047928156838083252
 Animator:
   serializedVersion: 4

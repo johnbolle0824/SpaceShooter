@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     [SerializeField] Transform laserSpawnPos;
 
     Animator anim;
+    [SerializeField]
+    private GameObject playerExplosion;
 
     // Start is called before the first frame update
     void Start()
@@ -135,10 +137,9 @@ public class Player : MonoBehaviour
         if ( health < 1 )
         {
             spawnManager.OnPlayerDeath();
-
-            anim.SetBool("isPlayerAlive", false);
-            _speed = 0;
-            Destroy(this.gameObject, 0.7f);
+                                  
+            Destroy(this.gameObject);
+            Instantiate(playerExplosion, transform.position, Quaternion.identity);
         }
     }
 
@@ -181,7 +182,16 @@ public class Player : MonoBehaviour
     public void ScoreModifier(int points)
     {
         score += points;
+        Debug.Log(score);
         _uiManager.UpdateScore(score);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Asteroid"))
+        {
+            Damage();
+        }
     }
 }
 
