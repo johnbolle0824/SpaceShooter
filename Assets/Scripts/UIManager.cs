@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore(int playerScore)
     {
-        scoreText.text = "Score:" + playerScore;
+        scoreText.text = "Score:" + playerScore;        
     }
 
     public void UpdateHealth(int playerHealth)

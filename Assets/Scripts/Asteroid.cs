@@ -10,10 +10,12 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private GameObject explosionFX;
 
+    private SpawnManager spawnManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class Asteroid : MonoBehaviour
 
         if (_hitPoints < 1) 
         {
+            spawnManager.StartSpawning();
             Destroy(this.gameObject);
             Instantiate(explosionFX, transform.position, Quaternion.identity);
         }

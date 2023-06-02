@@ -15,9 +15,10 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     Player player;
 
-    private IEnumerator spawnCoroutine;
-
     public float _spawnTime;
+    private float _currentSpawnTime;
+
+    private int _playerScore;
 
     bool stopSpawning = false;
 
@@ -26,22 +27,21 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-
-        _spawnTime = 3f;
-
-        StartCoroutine(SpawnEnemies(_spawnTime));
-        StartCoroutine(SpawnPowerUps(Random.Range(5f, 10f)));
-        StartCoroutine(SpawnSmallAsteroid(8f));
-        StartCoroutine(SpawnBigAsteroid(10f));
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-
+    public void StartSpawning()
+    {
+        StartCoroutine(SpawnEnemies(3f));
+        StartCoroutine(SpawnPowerUps(Random.Range(5f, 10f)));
+        StartCoroutine(SpawnSmallAsteroid(8f));
+        StartCoroutine(SpawnBigAsteroid(10f));
+    }
 
     IEnumerator SpawnEnemies(float spawnTime)
     {
@@ -89,5 +89,5 @@ public class SpawnManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         stopSpawning = true;
-    }
+    }    
 }
